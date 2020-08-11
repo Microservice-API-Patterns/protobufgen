@@ -1,4 +1,4 @@
-# A Java Library to Generate/Serialize Protocol Buffer Files
+# A Java Library to Serialize Protocol Buffer Files
 [![Build Status](https://travis-ci.com/stefan-ka/protobufgen.svg?branch=master)](https://travis-ci.com/stefan-ka/protobufgen) [![codecov](https://codecov.io/gh/stefan-ka/protobufgen/branch/master/graph/badge.svg)](https://codecov.io/gh/stefan-ka/protobufgen) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This is a simple Java library containing a [protocol buffer](https://developers.google.com/protocol-buffers) model and serializer. It can be used in case you want to generate [\*.proto files](https://developers.google.com/protocol-buffers/docs/proto3) within a Java application. We currently support [proto3](https://developers.google.com/protocol-buffers/docs/proto3) only.
