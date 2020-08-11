@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.stefan-ka'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.freemarker', name: 'freemarker', version: freemarkerVersion
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: jUnitVersion
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+}
+
+test {
+    useJUnitPlatform()
+}

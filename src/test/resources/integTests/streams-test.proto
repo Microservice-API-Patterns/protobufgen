@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package integTests.streamFlagTest;
+
+message InputMessage {
+}
+
+message OutputMessage {
+}
+
+service TestService {
+  rpc TestCall(stream InputMessage) returns (stream OutputMessage);
+}
+

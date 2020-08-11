@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package integTests.sample1;
+
+/* Person comment */
+message Person {
+  string name = 1; // name comment
+  int32 id = 2; // id comment
+  string email = 3; // email comment
+  repeated PhoneNumber phones = 4; // phones comment
+}
+
+message PhoneNumber {
+  string number = 1;
+  PhoneType type = 2;
+}
+
+/* AddressBook comment */
+message AddressBook {
+  repeated Person people = 1; // people comment
+}
+
+message SearchPersonRequest {
+  string name = 1;
+}
+
+message SearchPersonResponse {
+  repeated Person persons = 1;
+}
+
+/* PhoneType comment */
+enum PhoneType {
+  MOBILE = 0; // mobile comment
+  HOME = 1;
+  WORK = 2; // work comment
+}
+
+/* SearchPersonService comment */
+service SearchPersonService {
+  rpc Search(SearchPersonRequest) returns (SearchPersonResponse); // search comment
+}
+

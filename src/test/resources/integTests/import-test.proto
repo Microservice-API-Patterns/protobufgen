@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package integTests.importTest;
+
+import "sample1.proto";
+
+message JustSomeTestMessage {
+}
+
