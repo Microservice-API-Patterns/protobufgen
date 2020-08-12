@@ -5,7 +5,7 @@ jdk:
 
 install: "/bin/true"
 
-script: ./gradlew clean build
+script: ./gradlew clean build snapshot
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
