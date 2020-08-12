@@ -1,5 +1,5 @@
 # A Java Library to Serialize Protocol Buffer Files
-[![Build Status](https://travis-ci.com/stefan-ka/protobufgen.svg?branch=master)](https://travis-ci.com/stefan-ka/protobufgen) [![codecov](https://codecov.io/gh/stefan-ka/protobufgen/branch/master/graph/badge.svg)](https://codecov.io/gh/stefan-ka/protobufgen) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.com/stefan-ka/protobufgen.svg?branch=master)](https://travis-ci.com/stefan-ka/protobufgen) [![codecov](https://codecov.io/gh/stefan-ka/protobufgen/branch/master/graph/badge.svg)](https://codecov.io/gh/stefan-ka/protobufgen) [![Maven Central](https://img.shields.io/maven-central/v/io.github.stefan-ka/protobufgen.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.stefan-ka%22%20AND%20a:%22protobufgen%22) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This is a simple Java library containing a [protocol buffer](https://developers.google.com/protocol-buffers) model and serializer. It can be used in case you want to generate [\*.proto files](https://developers.google.com/protocol-buffers/docs/proto3) within a Java application. We currently support [proto3](https://developers.google.com/protocol-buffers/docs/proto3) only.
 
@@ -71,6 +71,23 @@ service SampleService {
 }
 ```
 Nesting messages is not supported yet.
+
+### Publication
+The library is published to Maven central. Thus, you can easily use it in your project with Gradle or Maven:
+
+**Gradle:**
+```gradle
+implementation 'io.github.stefan-ka:protobufgen:1.0.0'
+```
+
+**Maven:**
+```xml
+<dependency>
+  <groupId>io.github.stefan-ka</groupId>
+  <artifactId>protobufgen</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
 
 ## Contributing
 Contribution is always welcome! Create an issue if you just want to report a bug or missing feature. In case you want to implement a change/bugfix by yourself, follow these steps:
