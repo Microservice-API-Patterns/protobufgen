@@ -140,6 +140,10 @@ def customizePom(pom) {
     }
 }
 
+tasks.withType(GenerateModuleMetadata) {
+    enabled = false
+}
+
 test {
     useJUnitPlatform()
 }
