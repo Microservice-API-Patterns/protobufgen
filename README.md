@@ -77,7 +77,7 @@ The library is published to Maven central. Thus, you can easily use it in your p
 
 **Gradle:**
 ```gradle
-implementation 'io.github.stefan-ka:protobufgen:1.0.0'
+implementation 'io.github.stefan-ka:protobufgen:1.1.0'
 ```
 
 **Maven:**
@@ -85,7 +85,7 @@ implementation 'io.github.stefan-ka:protobufgen:1.0.0'
 <dependency>
   <groupId>io.github.stefan-ka</groupId>
   <artifactId>protobufgen</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
