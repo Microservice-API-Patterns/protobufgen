@@ -70,8 +70,6 @@ service SampleService {
   rpc sampleRPC(RequestMessage) returns (ResponseMessage);
 }
 ```
-Nesting messages is not supported yet.
-
 ### Publication
 The library is published to Maven central. Thus, you can easily use it in your project with Gradle or Maven:
 
