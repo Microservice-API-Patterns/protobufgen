@@ -1,3 +1,7 @@
+<#if comment?has_content>
+/* ${comment} */
+
+</#if>
 syntax = "${syntax}";
 
 <#if package?has_content>

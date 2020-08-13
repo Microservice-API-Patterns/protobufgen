@@ -181,4 +181,18 @@ public class ProtoSpecSerializerTest extends AbstractProtoIntegTest {
         assertEquals("syntax = \"proto3\";" + System.lineSeparator() + System.lineSeparator(), readTestOutputFile("empty.proto"));
     }
 
+    @Test
+    public void canSerializeTopComment() throws IOException {
+        ProtoSpec spec = new ProtoSpec.Builder()
+                .withPackage("integTests.CommentTest")
+                .withComment("comment at top")
+                .build();
+
+        // when
+        String proto = new ProtoSpecSerializer().serialize(spec);
+
+        // then
+        assertEquals(readIntegTestFile("top-comment.proto"), proto);
+    }
+
 }

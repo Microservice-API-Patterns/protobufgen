@@ -187,4 +187,16 @@ public class ProtoSpecTest extends AbstractProtoIntegTest {
         assertEquals("syntax = \"proto3\";" + System.lineSeparator() + System.lineSeparator(), readTestOutputFile("persisted.proto"));
     }
 
+    @Test
+    public void canAddComment() {
+        // given
+        ProtoSpec.Builder builder = new ProtoSpec.Builder();
+
+        // when
+        ProtoSpec spec = builder.withComment("test-comment").build();
+
+        // then
+        assertEquals("test-comment", spec.getComment());
+    }
+
 }

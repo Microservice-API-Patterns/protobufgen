@@ -38,6 +38,7 @@ public class ProtoSpec {
     private List<Service> services;
     private List<ImportStatement> importStatements;
     private FullIdentifier packageDef;
+    private String comment;
 
     private ProtoSpecSerializer serializer;
 
@@ -115,6 +116,15 @@ public class ProtoSpec {
         serializer.writeToFile(this, protoFile);
     }
 
+    /**
+     * Returns the comment of the represented proto spec (rendered at the top of the *.proto file).
+     *
+     * @return the comment as a string
+     */
+    public String getComment() {
+        return comment;
+    }
+
     public static class Builder {
         private final List<Message> messages;
         private final List<Enum> enums;
@@ -122,6 +132,7 @@ public class ProtoSpec {
         private final Set<Identifiable> allIdentifiableObjects;
         private final List<ImportStatement> importStatements;
         private FullIdentifier packageDef;
+        private String comment;
 
         public Builder() {
             this.messages = new LinkedList<>();
@@ -129,6 +140,7 @@ public class ProtoSpec {
             this.services = new LinkedList<>();
             this.allIdentifiableObjects = new HashSet<>();
             this.importStatements = new LinkedList<>();
+            this.comment = "";
         }
 
         public Builder withMessage(Message message) {
@@ -183,6 +195,11 @@ public class ProtoSpec {
             return this.withPackage(new FullIdentifier(packageName));
         }
 
+        public Builder withComment(String comment) {
+            this.comment = comment;
+            return this;
+        }
+
         private void addIdentifiable(Identifiable identifiable) {
             if (this.allIdentifiableObjects.stream().anyMatch(m -> m.getIdentifier().equals(identifiable.getIdentifier())))
                 throw new RootElementAlreadyExistsException(identifiable.getIdentifier().toString());
@@ -197,6 +214,7 @@ public class ProtoSpec {
             spec.services = new LinkedList<>(this.services);
             spec.importStatements = new LinkedList<>(this.importStatements);
             spec.packageDef = this.packageDef;
+            spec.comment = this.comment;
             return spec;
         }
 

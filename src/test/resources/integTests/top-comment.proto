@@ -1,0 +1,6 @@
+/* comment at top */
+
+syntax = "proto3";
+
+package integTests.CommentTest;
+
