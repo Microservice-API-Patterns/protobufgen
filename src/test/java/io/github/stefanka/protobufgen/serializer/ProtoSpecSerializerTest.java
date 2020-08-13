@@ -135,6 +135,39 @@ public class ProtoSpecSerializerTest extends AbstractProtoIntegTest {
     }
 
     @Test
+    public void canSerializeNestedMessages() throws IOException {
+        // given
+        Message childChild = new Message.Builder("ChildChild")
+                .withField(STRING, "name")
+                .build();
+        Message child = new Message.Builder("Child")
+                .withField(STRING, "name")
+                .withNestedMessage(childChild)
+                .build();
+        Message parent = new Message.Builder("Parent")
+                .withField(STRING, "name")
+                .withNestedMessage(child)
+                .build();
+        Message refs = new Message.Builder("Refs")
+                .withField(STRING, "name")
+                .withField(parent, "ref1")
+                .withField(child, "ref2")
+                .withField(childChild, "ref3")
+                .build();
+        ProtoSpec spec = new ProtoSpec.Builder()
+                .withPackage("integTests.NestedTest")
+                .withMessage(parent)
+                .withMessage(refs)
+                .build();
+
+        // when
+        String proto = new ProtoSpecSerializer().serialize(spec);
+
+        // then
+        assertEquals(readIntegTestFile("nested-test.proto"), proto);
+    }
+
+    @Test
     public void canWriteToFile() throws IOException {
         // given
         ProtoSpecSerializer serializer = new ProtoSpecSerializer();

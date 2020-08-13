@@ -123,6 +123,47 @@ public class MessageTest {
     }
 
     @Test
+    public void canNestMessages() {
+        // given
+        Message.Builder parentMessage = new Message.Builder("ParentMessage");
+        Message.Builder childMessage = new Message.Builder("ChildMessage");
+
+        // when
+        Message child = childMessage.build();
+        Message parent = parentMessage.withNestedMessage(child).build();
+
+        // then
+        assertEquals(1, parent.getNestedMessages().size());
+        assertTrue(child.isNestedMessage());
+        assertEquals("ParentMessage", child.getParent().getName());
+        assertEquals("ParentMessage.ChildMessage", child.getName());
+    }
+
+    @Test
+    public void canNestNestedMessages() {
+        // given
+        Message.Builder parentMessage = new Message.Builder("ParentMessage");
+        Message.Builder childMessage = new Message.Builder("ChildMessage");
+        Message.Builder childChildMessage = new Message.Builder("ChildChildMessage");
+
+        // when
+        Message childChild = childChildMessage.build();
+        Message child = childMessage.withNestedMessage(childChild).build();
+        Message parent = parentMessage.withNestedMessage(child).build();
+
+        // then
+        assertEquals(1, parent.getNestedMessages().size());
+        assertEquals(1, child.getNestedMessages().size());
+        assertTrue(child.isNestedMessage());
+        assertTrue(childChild.isNestedMessage());
+        assertEquals("ParentMessage", child.getParent().getName());
+        assertEquals("ParentMessage.ChildMessage", childChild.getParent().getName());
+        assertEquals("ParentMessage.ChildMessage.ChildChildMessage", childChild.getName());
+        assertEquals("ChildMessage", childChild.getParent().getSimpleName());
+        assertEquals("ChildChildMessage", childChild.getSimpleName());
+    }
+
+    @Test
     public void canDetermineEquality() {
         // given
         Message message1 = new Message.Builder("TestMessage1").build();

@@ -18,9 +18,7 @@ package io.github.stefanka.protobufgen.model;
 import io.github.stefanka.protobufgen.exception.FieldAlreadyExistsException;
 import io.github.stefanka.protobufgen.exception.FieldNumberAlreadyExistsException;
 
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Represents a protocol buffer message.
@@ -32,17 +30,28 @@ public class Message implements FieldType, Identifiable {
     private Identifier name;
     private String comment;
     private Set<MessageField> fields;
+    private List<Message> nestedMessages;
+    private Message parent;
 
     private Message() {
         // use builder to create message
     }
 
     /**
-     * Returns the name of the message as string.
+     * Returns the full name of the message (including parents, if it is a nested message) as string.
      *
-     * @return the name of the represented message
+     * @return the full name of the represented message
      */
     public String getName() {
+        return isNestedMessage() ? parent.getName() + "." + name.toString() : name.toString();
+    }
+
+    /**
+     * Returns the simple name of the message (without parents, if it is a nested message) as string
+     *
+     * @return the simple name of the represented message
+     */
+    public String getSimpleName() {
         return name.toString();
     }
 
@@ -74,16 +83,55 @@ public class Message implements FieldType, Identifiable {
         return new TreeSet<>(fields);
     }
 
+    /**
+     * Returns the nested messages inside the represented message.
+     *
+     * @return a list with the nested messages inside the represented message
+     */
+    public List<Message> getNestedMessages() {
+        return new LinkedList<>(nestedMessages);
+    }
+
+    /**
+     * Indicates whether the represented message is a nested message or not.
+     *
+     * @return true if the message is a nested message, false otherwise
+     */
+    public boolean isNestedMessage() {
+        return parent != null;
+    }
+
+    /**
+     * Gives the parent message, in case the represented message is a nested message, null otherwise.
+     *
+     * @return the parent message of the nested message, or null if it is not a nested message
+     */
+    public Message getParent() {
+        return parent;
+    }
+
+    /**
+     * Changes the parent message of the represented message.
+     *
+     * @param parent the new parent message
+     */
+    protected void setParent(Message parent) {
+        this.parent = parent;
+    }
+
     public static class Builder {
         private final Identifier name;
         private final Set<MessageField> messageFields;
+        private final List<Message> nestedMessages;
         private String comment;
         private int fieldCounter = 1;
+        private Message parent;
 
         public Builder(String messageName) {
             this.name = new Identifier(messageName);
             this.comment = "";
             this.messageFields = new TreeSet<>();
+            this.nestedMessages = new LinkedList<>();
         }
 
         public Builder withComment(String comment) {
@@ -111,10 +159,19 @@ public class Message implements FieldType, Identifiable {
             return this;
         }
 
+        public Builder withNestedMessage(Message message) {
+            this.nestedMessages.add(message);
+            return this;
+        }
+
         public Message build() {
             Message message = new Message();
             message.name = this.name;
             message.fields = new TreeSet<>(this.messageFields);
+            message.nestedMessages = new LinkedList<>(this.nestedMessages);
+            for (Message nested : nestedMessages) {
+                nested.setParent(message);
+            }
             message.comment = this.comment;
             return message;
         }
