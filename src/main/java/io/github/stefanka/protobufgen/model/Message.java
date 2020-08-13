@@ -17,6 +17,7 @@ package io.github.stefanka.protobufgen.model;
 
 import io.github.stefanka.protobufgen.exception.FieldAlreadyExistsException;
 import io.github.stefanka.protobufgen.exception.FieldNumberAlreadyExistsException;
+import io.github.stefanka.protobufgen.exception.NestedMessageAlreadyExistsException;
 
 import java.util.*;
 
@@ -160,6 +161,8 @@ public class Message implements FieldType, Identifiable {
         }
 
         public Builder withNestedMessage(Message message) {
+            if (this.nestedMessages.stream().anyMatch(m -> m.getName().equals(message.getName())))
+                throw new NestedMessageAlreadyExistsException(message.getName());
             this.nestedMessages.add(message);
             return this;
         }

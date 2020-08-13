@@ -17,6 +17,7 @@ package io.github.stefanka.protobufgen.model;
 
 import io.github.stefanka.protobufgen.exception.FieldAlreadyExistsException;
 import io.github.stefanka.protobufgen.exception.FieldNumberAlreadyExistsException;
+import io.github.stefanka.protobufgen.exception.NestedMessageAlreadyExistsException;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -161,6 +162,20 @@ public class MessageTest {
         assertEquals("ParentMessage.ChildMessage.ChildChildMessage", childChild.getName());
         assertEquals("ChildMessage", childChild.getParent().getSimpleName());
         assertEquals("ChildChildMessage", childChild.getSimpleName());
+    }
+
+    @Test
+    public void cannotAddDuplicateNestedMessage() {
+        // given
+        Message.Builder parentMessage = new Message.Builder("ParentMessage");
+        Message.Builder childMessage1 = new Message.Builder("ChildMessage");
+        Message.Builder childMessage2 = new Message.Builder("ChildMessage");
+        parentMessage.withNestedMessage(childMessage1.build());
+
+        // when, then
+        assertThrows(NestedMessageAlreadyExistsException.class, () -> {
+            parentMessage.withNestedMessage(childMessage2.build());
+        });
     }
 
     @Test
