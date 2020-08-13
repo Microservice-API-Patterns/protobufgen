@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package integTests.NestedTest;
+
+message Parent {
+  string name = 1;
+
+  message Child {
+    string name = 1;
+
+    message ChildChild {
+      string name = 1;
+    }
+  }
+}
+
+message Refs {
+  string name = 1;
+  Parent ref1 = 2;
+  Parent.Child ref2 = 3;
+  Parent.Child.ChildChild ref3 = 4;
+}
+

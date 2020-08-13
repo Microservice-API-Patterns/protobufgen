@@ -10,15 +10,26 @@ import <#if import.isPublic()>public </#if>"${import.fileName}";
 <#if importStatements?has_content>
 
 </#if>
-<#list messages as message>
+<#macro renderMessage message indent>
 <#if message.comment?has_content>
-/* ${message.comment} */
+${""?left_pad(indent * 2)}/* ${message.comment} */
 </#if>
-message ${message.name} {
-  <#list message.fields as field>
-  <#if field.repeated>repeated </#if>${field.type} ${field.name} = ${field.number};<#if field.comment?has_content> // ${field.comment}</#if>
-  </#list>
-}
+${""?left_pad(indent * 2)}message ${message.simpleName} {
+<#if message.fields?has_content>
+<#list message.fields as field>
+${""?left_pad((indent + 1) * 2)}<#if field.repeated>repeated </#if>${field.type} ${field.name} = ${field.number};<#if field.comment?has_content> // ${field.comment}</#if>
+</#list>
+</#if>
+<#if message.getNestedMessages()?has_content>
+
+<#list message.getNestedMessages() as message>
+<@renderMessage message indent + 1 />
+</#list>
+</#if>
+${""?left_pad(indent * 2)}}
+</#macro>
+<#list messages as message>
+<@renderMessage message 0 />
 
 </#list>
 <#list enums as enum>
