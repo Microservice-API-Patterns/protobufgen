@@ -15,7 +15,7 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class FieldNumberOutOfRangeException extends RuntimeException {
+public class FieldNumberOutOfRangeException extends ProtocolBufferBuilderException {
 
     public FieldNumberOutOfRangeException(int number) {
         super("The number " + number + "is out of the supported range (1 - 536'870'911).");

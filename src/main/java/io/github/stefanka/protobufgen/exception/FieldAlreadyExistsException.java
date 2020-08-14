@@ -15,10 +15,10 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class FieldAlreadyExistsException extends RuntimeException {
+public class FieldAlreadyExistsException extends ProtocolBufferBuilderException {
 
     public FieldAlreadyExistsException(String fieldName) {
-        super("A field with the name '" + fieldName + "' already exists.");
+        super("A field with the name '" + fieldName + "' already exists. Please ensure that field names are unique.");
     }
 
 }

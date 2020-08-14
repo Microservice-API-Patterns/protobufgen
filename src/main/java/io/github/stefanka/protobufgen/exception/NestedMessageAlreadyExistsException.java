@@ -15,10 +15,10 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class NestedMessageAlreadyExistsException extends RuntimeException {
+public class NestedMessageAlreadyExistsException extends ProtocolBufferBuilderException {
 
     public NestedMessageAlreadyExistsException(String name) {
-        super("A nested message with the name '" + name + "' already exists!");
+        super("A nested message with the name '" + name + "' already exists. Please ensure that nested message names are unique.");
     }
 
 }

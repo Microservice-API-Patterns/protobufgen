@@ -15,7 +15,7 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class ProtoSerializationException extends RuntimeException {
+public class ProtoSerializationException extends ProtocolBufferBuilderException {
 
     public ProtoSerializationException(Throwable e) {
         super("The proto file cannot be serialized.", e);

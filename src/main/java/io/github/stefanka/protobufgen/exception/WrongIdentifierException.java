@@ -15,7 +15,7 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class WrongIdentifierException extends RuntimeException {
+public class WrongIdentifierException extends ProtocolBufferBuilderException {
 
     public WrongIdentifierException(String ident) {
         super("'" + ident + "' is not a correct identifier! Ensure it corresponds to the protocol buffers format (https://developers.google.com/protocol-buffers/docs/reference/proto3-spec#identifiers).");

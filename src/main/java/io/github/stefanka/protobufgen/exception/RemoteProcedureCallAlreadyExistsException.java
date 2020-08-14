@@ -15,7 +15,7 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class RemoteProcedureCallAlreadyExistsException extends RuntimeException {
+public class RemoteProcedureCallAlreadyExistsException extends ProtocolBufferBuilderException {
 
     public RemoteProcedureCallAlreadyExistsException(String name) {
         super("An RPC with the name '" + name + "' already exists in your service!");

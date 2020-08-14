@@ -15,7 +15,7 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class FieldNumberReservedException extends RuntimeException {
+public class FieldNumberReservedException extends ProtocolBufferBuilderException {
 
     public FieldNumberReservedException() {
         super("Field numbers 19000 through 19999 are reserved for the protocol buffer library implementation.");

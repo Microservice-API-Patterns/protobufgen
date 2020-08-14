@@ -15,7 +15,7 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class FieldNumberAlreadyExistsException extends RuntimeException {
+public class FieldNumberAlreadyExistsException extends ProtocolBufferBuilderException {
 
     public FieldNumberAlreadyExistsException(String message, int index) {
         super("The message '" + message + "' already contains a field with the index " + index + ".");

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 The Context Mapper Project Team
+ * Copyright 2020 Stefan Kapferer
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,14 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class RootElementAlreadyExistsException extends ProtocolBufferBuilderException {
+public class ProtocolBufferBuilderException extends RuntimeException {
 
-    public RootElementAlreadyExistsException(String name) {
-        super("A root element (message, enum, or service) with the name '" + name + "' already exists in your spec. Please ensure that the names of your messages, enums, and services are unique.");
+    public ProtocolBufferBuilderException(String message) {
+        super(message);
+    }
+
+    public ProtocolBufferBuilderException(String message, Throwable cause) {
+        super(message, cause);
     }
 
 }

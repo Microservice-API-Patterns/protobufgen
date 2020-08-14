@@ -15,7 +15,7 @@
  */
 package io.github.stefanka.protobufgen.exception;
 
-public class FirstEnumFieldZeroValueException extends RuntimeException {
+public class FirstEnumFieldZeroValueException extends ProtocolBufferBuilderException {
 
     public FirstEnumFieldZeroValueException() {
         super("The first enum field must have the value zero (0)!");
