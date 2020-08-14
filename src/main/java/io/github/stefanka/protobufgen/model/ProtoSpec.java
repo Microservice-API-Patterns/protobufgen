@@ -25,6 +25,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import static io.github.stefanka.protobufgen.model.AnyType.ANY_TYPE_IMPORT;
+
 /**
  * Represents a protocol buffers specification; one single *.proto file.
  *
@@ -212,10 +214,37 @@ public class ProtoSpec {
             spec.messages = new LinkedList<>(this.messages);
             spec.enums = new LinkedList<>(this.enums);
             spec.services = new LinkedList<>(this.services);
-            spec.importStatements = new LinkedList<>(this.importStatements);
             spec.packageDef = this.packageDef;
             spec.comment = this.comment;
+            if (containsAnyType())
+                addAnyTypeImport();
+            spec.importStatements = new LinkedList<>(this.importStatements);
             return spec;
+        }
+
+        private boolean containsAnyType() {
+            for (Message message : this.messages) {
+                if (containsAnyType(message))
+                    return true;
+            }
+            return false;
+        }
+
+        private boolean containsAnyType(Message message) {
+            for (MessageField field : message.getFields()) {
+                if (field.getType().equals(AnyType.ANY_TYPE_NAME))
+                    return true;
+            }
+            for (Message nested : message.getNestedMessages()) {
+                if (containsAnyType(nested))
+                    return true;
+            }
+            return false;
+        }
+
+        private void addAnyTypeImport() {
+            if (!this.importStatements.stream().anyMatch(i -> i.getFileName().equals(ANY_TYPE_IMPORT)))
+                this.importStatements.add(new ImportStatement(ANY_TYPE_IMPORT));
         }
 
     }

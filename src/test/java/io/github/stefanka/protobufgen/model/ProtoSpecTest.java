@@ -199,4 +199,60 @@ public class ProtoSpecTest extends AbstractProtoIntegTest {
         assertEquals("test-comment", spec.getComment());
     }
 
+    @Test
+    public void canAutomaticallyImportAnyTypeIfNeeded() {
+        // given
+        ProtoSpec.Builder builder = new ProtoSpec.Builder();
+        Message message = new Message.Builder("TestMessage")
+                .withField(new AnyType(), "anyField")
+                .build();
+
+        // when
+        ProtoSpec spec = builder.withMessage(message).build();
+
+        // then
+        assertEquals(1, spec.getMessages().size());
+        assertEquals("google.protobuf.Any", spec.getMessages().iterator().next().getFields().iterator().next().getType());
+        assertEquals(1, spec.getImportStatements().size());
+        assertEquals("google/protobuf/any.proto", spec.getImportStatements().iterator().next().getFileName());
+    }
+
+    @Test
+    public void canAutomaticallyImportAnyType4NestedMessageIfNeeded() {
+        // given
+        ProtoSpec.Builder builder = new ProtoSpec.Builder();
+        Message nested = new Message.Builder("NestedType")
+                .withField(new AnyType(), "anyField")
+                .build();
+        Message message = new Message.Builder("TestMessage")
+                .withField(nested, "messageField")
+                .withNestedMessage(nested)
+                .build();
+
+        // when
+        ProtoSpec spec = builder.withMessage(message).build();
+
+        // then
+        assertEquals(1, spec.getImportStatements().size());
+        assertEquals("google/protobuf/any.proto", spec.getImportStatements().iterator().next().getFileName());
+    }
+
+    @Test
+    public void doNotAddAnyTypeImportIfDoneManually() {
+        // given
+        ProtoSpec.Builder builder = new ProtoSpec.Builder();
+        Message message = new Message.Builder("TestMessage")
+                .withField(new AnyType(), "anyField")
+                .build();
+
+        // when
+        ProtoSpec spec = builder.withMessage(message)
+                .withImport("google/protobuf/any.proto")
+                .build();
+
+        // then
+        assertEquals(1, spec.getImportStatements().size());
+        assertEquals("google/protobuf/any.proto", spec.getImportStatements().iterator().next().getFileName());
+    }
+
 }

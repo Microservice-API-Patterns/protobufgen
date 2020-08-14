@@ -65,6 +65,18 @@ public class MessageFieldTest {
     }
 
     @Test
+    public void canUseAnyType() {
+        // given
+        MessageField field;
+
+        // when
+        field = new MessageField.Builder(new AnyType(), "anyField", 1).build();
+
+        // then
+        assertEquals("google.protobuf.Any", field.getType());
+    }
+
+    @Test
     public void canSetRepeatedFlag() {
         // given
         MessageField.Builder fb1 = new MessageField.Builder(SimpleFieldType.FLOAT, "myTestField1", 1);
