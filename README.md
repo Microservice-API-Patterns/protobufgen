@@ -6,7 +6,7 @@ This is a simple Java library containing a [protocol buffer](https://developers.
 ## Usage
 **Note:** The examples below just give you a glimpse how the API works. Of course, our intention is not writing protocol buffer files (\*.proto) manually in Java, as show below. If that is your goal, just write \*.proto files directly :) We use this library in generators to transform other code/models into protocol buffer specifications.
 
-You find all model classes to represent a proto specification in Java within the `io.github.stefanka.protobufgen.model` package. `io.github.stefanka.protobufgen.model.ProtoSpec` is the root element and with `persistProto(File protoFile)` you can simply serialize the \*.proto file. An example:
+You find all model classes to represent a proto specification in Java within the `io.github.microserviceapipatterns.protobufgen.model` package. `ProtoSpec` is the root element and with `persistProto(File protoFile)` you can simply serialize the \*.proto file. An example:
 
 ```java
 ProtoSpec proto = new ProtoSpec.Builder()
@@ -22,7 +22,7 @@ ProtoSpec proto = new ProtoSpec.Builder()
 proto.persistProto(new File("demo.proto"));
 ```
 
-_Note:_ You can also use the `toString()` method on `io.github.stefanka.protobufgen.model.ProtoSpec` and get the serialized model as a String.
+_Note:_ You can also use the `toString()` method on `ProtoSpec` and get the serialized model as a String.
 
 The example above generates the following simple \*.proto file:
 

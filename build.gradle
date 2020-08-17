@@ -6,7 +6,7 @@ plugins {
     id 'signing'
 }
 
-group 'io.github.stefan-ka'
+group 'io.github.microservice-api-patterns'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -109,26 +109,26 @@ def customizePom(pom) {
 
             description 'A Java Library to Generate/Serialize Protocol Buffer Files (*.proto files)'
             name 'protobufgen'
-            url 'https://github.com/stefan-ka/protobufgen'
+            url 'https://github.com/Microservice-API-Patterns/protobufgen'
             organization {
-                name 'Stefan Kapferer'
-                url 'https://stefan.kapferer.ch/'
+                name 'Microservice API Patterns'
+                url 'https://github.com/Microservice-API-Patterns/'
             }
             issueManagement {
                 system 'GitHub'
-                url 'https://github.com/stefan-ka/protobufgen/issues'
+                url 'https://github.com/Microservice-API-Patterns/protobufgen/issues'
             }
             licenses {
                 license {
                     name 'Apache License 2.0'
-                    url 'https://github.com/stefan-ka/protobufgen/blob/master/LICENSE'
+                    url 'https://github.com/Microservice-API-Patterns/protobufgen/blob/master/LICENSE'
                     distribution 'repo'
                 }
             }
             scm {
-                url 'https://github.com/stefan-ka/protobufgen'
-                connection 'scm:git:git://github.com/stefan-ka/protobufgen.git'
-                developerConnection 'scm:git:ssh://git@github.com:stefan-ka/protobufgen.git'
+                url 'https://github.com/Microservice-API-Patterns/protobufgen'
+                connection 'scm:git:git://github.com/Microservice-API-Patterns/protobufgen.git'
+                developerConnection 'scm:git:ssh://git@github.com:Microservice-API-Patterns/protobufgen.git'
             }
             developers {
                 developer {
