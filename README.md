@@ -97,4 +97,4 @@ Contribution is always welcome! Create an issue if you just want to report a bug
 5. Create new Pull Request (PR)
 
 ## Licence
-This library is published under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). Copyright (c) 2020 Stefan Kapferer
+*Copyright: Stefan Kapferer, 2020. All rights reserved. See [license information](/LICENSE).*
