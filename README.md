@@ -70,6 +70,9 @@ service SampleService {
   rpc sampleRPC(RequestMessage) returns (ResponseMessage);
 }
 ```
+
+Please consult the [JavaDoc](https://www.javadoc.io/doc/io.github.microservice-api-patterns/protobufgen/latest/index.html) for further documentation regarding the API and how to use it.
+
 ### Publication
 The library is published to Maven central. Thus, you can easily use it in your project with Gradle or Maven:
 
