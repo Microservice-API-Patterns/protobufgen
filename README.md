@@ -1,5 +1,5 @@
 # A Java Library to Serialize Protocol Buffer Files
-[![Build Status](https://travis-ci.com/Microservice-API-Patterns/protobufgen.svg?branch=master)](https://travis-ci.com/Microservice-API-Patterns/protobufgen) [![codecov](https://codecov.io/gh/Microservice-API-Patterns/protobufgen/branch/master/graph/badge.svg)](https://codecov.io/gh/Microservice-API-Patterns/protobufgen) [![Maven Central](https://img.shields.io/maven-central/v/io.github.stefan-ka/protobufgen.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.stefan-ka%22%20AND%20a:%22protobufgen%22) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://travis-ci.com/Microservice-API-Patterns/protobufgen.svg?branch=master)](https://travis-ci.com/Microservice-API-Patterns/protobufgen) [![codecov](https://codecov.io/gh/Microservice-API-Patterns/protobufgen/branch/master/graph/badge.svg)](https://codecov.io/gh/Microservice-API-Patterns/protobufgen) [![Maven Central](https://img.shields.io/maven-central/v/io.github.microservice-api-patterns/protobufgen.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.microservice-api-patterns%22%20AND%20a:%22protobufgen%22) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This is a simple Java library containing a [protocol buffer](https://developers.google.com/protocol-buffers) model and serializer. It can be used in case you want to generate [\*.proto files](https://developers.google.com/protocol-buffers/docs/proto3) within a Java application. We currently support [proto3](https://developers.google.com/protocol-buffers/docs/proto3) only.
 
@@ -75,13 +75,13 @@ The library is published to Maven central. Thus, you can easily use it in your p
 
 **Gradle:**
 ```gradle
-implementation 'io.github.stefan-ka:protobufgen:1.2.0'
+implementation 'io.github.microservice-api-patterns:protobufgen:1.2.0'
 ```
 
 **Maven:**
 ```xml
 <dependency>
-  <groupId>io.github.stefan-ka</groupId>
+  <groupId>io.github.microservice-api-patterns</groupId>
   <artifactId>protobufgen</artifactId>
   <version>1.2.0</version>
 </dependency>
